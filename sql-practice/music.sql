@@ -1,9 +1,10 @@
 -- This ensures that SQLite enforces FOREIGN KEY constraints
 PRAGMA foreign_keys = 1;
+DROP TABLE IF EXISTS musicians_instruments;
 DROP TABLE IF EXISTS instruments;
 DROP TABLE IF EXISTS musicians;
 DROP TABLE IF EXISTS bands;
-DROP TABLE IF EXISTS musicians_instruments;
+
 
 CREATE TABLE bands (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,7 +22,7 @@ CREATE TABLE instruments (
 );
 
 CREATE TABLE musicians_instruments (
-  musicians_id INTEGER REFERENCES musicians(id),
+  musicians_id INTEGER REFERENCES musicians(id), -- inline way of referencing foreign key
   instrument_id INTEGER,
-  FOREIGN KEY (instrument_id) REFERENCES instruments(id)
+  FOREIGN KEY (instrument_id) REFERENCES instruments(id) -- next line way of referencing foreign key
 )
